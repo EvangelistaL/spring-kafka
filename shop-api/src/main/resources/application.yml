@@ -1,0 +1,7 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none #indica para o	Spring Boot	não	criar as tabelas baseadas nas classes do modelo

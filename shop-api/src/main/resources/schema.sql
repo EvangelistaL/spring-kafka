@@ -1,0 +1,13 @@
+create table shop (
+				id bigint primary key auto_increment,
+				identifier varchar not null,
+				status varchar not null,
+				date_shop date
+);
+create table shop_item (
+				id bigint primary key auto_increment,
+				product_identifier varchar(100) not null,
+				amount int not null,
+				price double not null,
+				shop_id	bigint REFERENCES shop(id)
+);
