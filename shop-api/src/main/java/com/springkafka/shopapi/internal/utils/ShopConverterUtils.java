@@ -12,7 +12,7 @@ public class ShopConverterUtils {
         shop.setIdentifier(shopDTO.identifier());
         shop.setStatus(shopDTO.status());
         shop.setDateShop(shopDTO.dateShop());
-        shop.setShopItems(shopDTO.shopItemDTO()
+        shop.setShopItems(shopDTO.item()
                 .stream()
                 .map(ShopItemConverterUtils::convert)
                 .toList());

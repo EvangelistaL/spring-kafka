@@ -5,5 +5,5 @@ import com.springkafka.shopapi.internal.entity.enums.PurchaseStatus;
 import java.time.LocalDate;
 import java.util.List;
 
-public record ShopDTO(String identifier, PurchaseStatus status, LocalDate dateShop, List<ShopItemDTO> shopItemDTO) {
+public record ShopDTO(String identifier, PurchaseStatus status, LocalDate dateShop, List<ShopItemDTO> item) {
 }
