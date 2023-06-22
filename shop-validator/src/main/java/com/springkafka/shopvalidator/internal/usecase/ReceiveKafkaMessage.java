@@ -5,6 +5,7 @@ import com.springkafka.shopvalidator.api.model.ShopDTO;
 import com.springkafka.shopvalidator.api.model.ShopItemDTO;
 import com.springkafka.shopvalidator.internal.entity.Product;
 import com.springkafka.shopvalidator.internal.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 @AllArgsConstructor
 @Service
 @Slf4j
+@Transactional
 public class ReceiveKafkaMessage {
 
     private static final String SHOP_TOPIC_NAME = "SHOP_TOPIC";

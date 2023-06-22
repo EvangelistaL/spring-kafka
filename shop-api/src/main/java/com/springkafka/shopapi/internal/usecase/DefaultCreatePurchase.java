@@ -7,6 +7,7 @@ import com.springkafka.shopapi.internal.entity.ShopItem;
 import com.springkafka.shopapi.internal.entity.enums.PurchaseStatus;
 import com.springkafka.shopapi.internal.repository.ShopRepository;
 import com.springkafka.shopapi.internal.utils.ShopConverterUtils;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @Service
+@Transactional
 public class DefaultCreatePurchase implements CreatePurchase {
 
     private ShopRepository shopRepository;

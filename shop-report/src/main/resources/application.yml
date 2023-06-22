@@ -1,0 +1,10 @@
+server:
+  port: 8082
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none #indica para o	Spring Boot	n?o	criar as tabelas baseadas nas classes do modelo
+
+kafka:
+  bootstrapAddress: localhost:9092

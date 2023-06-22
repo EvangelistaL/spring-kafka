@@ -1,3 +1,5 @@
+-- o arquivo schema.sql deve ter apenas comandos DDL (Data Definition Language), que são os
+-- arquivos de definição da base de dados, como CREATE e DROP
 create table shop (
 				id bigint primary key auto_increment,
 				identifier varchar not null,
