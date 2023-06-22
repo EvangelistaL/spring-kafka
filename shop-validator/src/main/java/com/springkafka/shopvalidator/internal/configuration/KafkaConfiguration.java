@@ -1,6 +1,6 @@
-package com.springkafka.shopapi.internal.configuration;
+package com.springkafka.shopvalidator.internal.configuration;
 
-import com.springkafka.shopapi.api.model.ShopDTO;
+import com.springkafka.shopvalidator.api.model.ShopDTO;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -36,7 +36,7 @@ public class KafkaConfiguration {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 JsonSerializer.class);
         props.put(ProducerConfig.CLIENT_ID_CONFIG,
-                "shop-api");
+                "shop-validator");
         return new DefaultKafkaProducerFactory<>(props);
     }
 
