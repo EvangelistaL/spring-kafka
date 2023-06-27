@@ -25,6 +25,10 @@ public class Shop implements Serializable {
     @NotBlank
     private String identifier;
 
+    @Column(name = "buyer_identifier")
+    @NotBlank
+    private String buyerIdentifier;
+
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     @NotNull

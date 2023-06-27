@@ -2,6 +2,7 @@
 -- arquivos de definição da base de dados, como CREATE e DROP
 create table shop (
 				id bigint primary key auto_increment,
+				buyer_identifier varchar(100) not null,
 				identifier varchar not null,
 				status varchar not null,
 				date_shop date

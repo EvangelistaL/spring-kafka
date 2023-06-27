@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -26,10 +28,13 @@ public class ReceiveKafkaMessage {
     private KafkaClient kafkaClient;
 
     @KafkaListener(topics = SHOP_TOPIC_NAME, groupId = "group")
-    public void listenShopTopic(ShopDTO shopDTO){
+    public void listenShopTopic(ShopDTO shopDTO,
+                                @Header(KafkaHeaders.RECEIVED_KEY) String key,
+                                @Header(KafkaHeaders.RECEIVED_PARTITION) String partition,
+                                @Header(KafkaHeaders.RECEIVED_TIMESTAMP) String timestamp){
         try{
-            log.info("Compra recebida no tópico: {}.",
-                    shopDTO.identifier());
+            log.info("Compra recebida no tópico: {} com chave {} na partição {} hora {}",
+                    shopDTO.identifier(), key, partition, timestamp);
             boolean success = true;
             for (ShopItemDTO itemDTO : shopDTO.item()){
                 Product product = this.productRepository.findByProductIdentifier(itemDTO.productIdentifier())
@@ -60,6 +65,7 @@ public class ReceiveKafkaMessage {
         log.info("Erro no processamento da compra {}.",
                 shopDTO.identifier());
         kafkaClient.sendMessage(new ShopDTO(shopDTO.identifier(),
+                shopDTO.buyerIdentifier(),
                 PurchaseStatus.ERROR,
                 shopDTO.dateShop(),
                 shopDTO.item()));
@@ -69,6 +75,7 @@ public class ReceiveKafkaMessage {
         log.info("Compra {} efetuada com sucesso.",
                 shopDTO.identifier());
         kafkaClient.sendMessage(new ShopDTO(shopDTO.identifier(),
+                shopDTO.buyerIdentifier(),
                 PurchaseStatus.SUCCESS,
                 shopDTO.dateShop(),
                 shopDTO.item()));
